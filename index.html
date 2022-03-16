@@ -66,12 +66,12 @@
         }else{
             
         }
-        
-        }
-        if(playerScore === 5 && playerScore > computerScore){
+        console.log(playRound(userPlay,computerPlay()));
+    }
+        if(playerScore > computerScore){
             return "Player wins!"
         }
-        else if(computerScore === 5 && computerScore > playerScore){
+        else if(computerScore > playerScore){
             return "Player loses!"
         }
         else{
