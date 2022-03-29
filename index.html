@@ -4,13 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
+    <div class = "game">
+        <div class = "displayScores">
+            Player Score: <div id = "playerScore">
+                
+            </div>
+            
+            Computer Score: <div id = "computerScore">
+    
+            </div>
+        </div>
+            
+        
+        <div id="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissor">Scissor</button>
+        </div>
+        <div id="result">
+    
+        </div>
+    </div>
     
 </body>
 
 <script>
+    var playerScore = 0;
+    var computerScore = 0;
+    var gameResult = "";
+
+    
+
     function computerPlay(){
         var items = Array('rock', 'paper', 'scissor')
         var item = items[Math.floor(Math.random()*items.length)];
@@ -20,9 +48,13 @@
     function playRound(playerSelection, computerSelection){
         if(playerSelection.toLowerCase() === "rock"){
             if(computerSelection === "paper"){
+                computerScore++;
+                gameResult = "You lose! Paper beats Rock!"
                 return "You lose! Paper beats Rock!"
             }
             else if(computerSelection === "scissor"){
+                playerScore++;
+                gameResult = "You win! Rock beats scissor!"
                 return "You win! Rock beats scissor!"
             }
             else{
@@ -31,9 +63,11 @@
         }
         if(playerSelection.toLowerCase() === "paper"){
             if(computerSelection === "scissor"){
+                computerScore++;
                 return "You lose! Scissor beats paper!"
             }
             else if(computerSelection === "rock"){
+                playerScore++;
                 return "You win! Paper beats rock!"
             }
             else{
@@ -42,9 +76,11 @@
         }
         if(playerSelection.toLowerCase() === "scissor"){
             if(computerSelection === "rock"){
+                computerScore++;
                 return "You lose! Rock beats paper!"
             }
             else if(computerSelection === "paper"){
+                playerScore++;
                 return "You win! Scissor beats paper!"
             }
             else{
@@ -53,12 +89,9 @@
         }
     }
 
-    function game(){
-        var playerScore = 0;
-        var computerScore = 0;
-        userPlay = "rock";
+    function game(playerSelection){
         for(let i = 0; i < 5; i++){
-            var userPlay = prompt("Pick one (rock, paper, scissor)")
+            var userPlay = playerSelection
             if((playRound(userPlay,computerPlay()).charAt(4) === 'w')){
                 playerScore++;
             } else if((playRound(userPlay,computerPlay()).charAt(4) === 'l')){
@@ -77,9 +110,39 @@
         else{
             return "Nobody wins!"
         }
-}
+    }
+
+    //console.log(playRound("rock", computerPlay()));
+    // console.log(game());
+
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach((button)=>{
+        button.addEventListener('click', ()=>{
+            if(button.id == 'rock' ){
+                playRound('rock', computerPlay());
+                console.log("Computer score: " +computerScore);
+                console.log("Player score: " + playerScore);
+                document.getElementById("playerScore").innerHTML = playerScore;
+                document.getElementById("computerScore").innerHTML = computerScore;
+                document.getElementById("result").innerHTML = gameResult;
+            }
+            if(button.id == 'paper'){
+                console.log(playRound('paper', computerPlay()))
+                document.getElementById("playerScore").innerHTML = playerScore;
+                document.getElementById("computerScore").innerHTML = computerScore;
+                document.getElementById("result").innerHTML = gameResult;
+            }
+            if(button.id == 'scissor'){
+                console.log(playRound('scissor', computerPlay()))
+                document.getElementById("playerScore").innerHTML = playerScore;
+                document.getElementById("computerScore").innerHTML = computerScore;
+                document.getElementById("result").innerHTML = gameResult;
+            }
+        })
+    })
 
     
-    console.log(game());
+    
 </script>
 </html>

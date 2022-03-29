@@ -1,0 +1,26 @@
+.game{
+    display: flex;
+    flex-direction: column;
+}
+#buttons{
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    }
+
+.displayScores{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+}
+
+#result{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
