@@ -87,6 +87,7 @@
                 return "It's a tie."
             }
         }
+        
     }
 
     function game(playerSelection){
@@ -117,30 +118,58 @@
 
     const buttons = document.querySelectorAll('button');
 
+    function winCon(){
+        if(playerScore == 5){
+        document.getElementById("result").innerHTML = "Player wins";
+        }else if(computerScore == 5){
+        document.getElementById("result").innerHTML = "Computer wins";
+    }
+    }
+
+    function playerRock(){
+        playRound('rock', computerPlay());
+        document.getElementById("playerScore").innerHTML = playerScore;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        document.getElementById("result").innerHTML = gameResult;
+        winCon();
+    
+    }
+
+    function playerPaper(){
+        playRound('paper', computerPlay());
+        document.getElementById("playerScore").innerHTML = playerScore;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        document.getElementById("result").innerHTML = gameResult;
+        winCon();
+        
+    }
+
+    function playerScissor(){
+        playRound('scissor', computerPlay());
+        document.getElementById("playerScore").innerHTML = playerScore;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        document.getElementById("result").innerHTML = gameResult;
+        winCon();
+    }
+
     buttons.forEach((button)=>{
         button.addEventListener('click', ()=>{
             if(button.id == 'rock' ){
-                playRound('rock', computerPlay());
-                console.log("Computer score: " +computerScore);
-                console.log("Player score: " + playerScore);
-                document.getElementById("playerScore").innerHTML = playerScore;
-                document.getElementById("computerScore").innerHTML = computerScore;
-                document.getElementById("result").innerHTML = gameResult;
+                // playRound('rock', computerPlay());
+                // document.getElementById("playerScore").innerHTML = playerScore;
+                // document.getElementById("computerScore").innerHTML = computerScore;
+                // document.getElementById("result").innerHTML = gameResult;
+                playerRock();
             }
             if(button.id == 'paper'){
-                console.log(playRound('paper', computerPlay()))
-                document.getElementById("playerScore").innerHTML = playerScore;
-                document.getElementById("computerScore").innerHTML = computerScore;
-                document.getElementById("result").innerHTML = gameResult;
+                playerPaper();
             }
             if(button.id == 'scissor'){
-                console.log(playRound('scissor', computerPlay()))
-                document.getElementById("playerScore").innerHTML = playerScore;
-                document.getElementById("computerScore").innerHTML = computerScore;
-                document.getElementById("result").innerHTML = gameResult;
+                playerScissor();
             }
         })
     })
+    
 
     
     
